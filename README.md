@@ -1,4 +1,4 @@
-#FOSSBilling-Cyberpanel Server Manager
+# FOSSBilling-Cyberpanel Server Manager
 
 > [!NOTE]  
 > Tested with FOSSBilling v0.6.20
