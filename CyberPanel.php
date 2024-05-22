@@ -24,14 +24,6 @@ class Server_Manager_CyberPanel extends Server_Manager
     }
 
     /**
-     * Initializes the server manager.
-     * Add required parameters checks here.
-     */
-    public function init()
-    {
-    }
-
-    /**
      * Returns the URL for account management.
      *
      * @param Server_Account|null $account the account for which the URL is generated
