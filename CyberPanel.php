@@ -103,7 +103,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $request = $this->request('createWebsite', [
             'domainName' => $account->getDomain(),
-            'ownerEmail' => 'nope@email.com',
+            'ownerEmail' => $client->getEmail(),
             'packageName' => $package->getName(),
             'websiteOwner' => $account->getUsername(),
             'ownerPassword' => $account->getPassword(),
