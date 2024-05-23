@@ -1,12 +1,12 @@
 # FOSSBilling-Cyberpanel Server Manager
 
 > [!NOTE]  
-> Tested with FOSSBilling v0.6.20
+> Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20
 > 
 
 ## Installation
 
-- Download or git clone the CyberPanel.php file to your FOSSBilling installation at the following location: /library/Server/Manager
+- Download or git clone the CyberPanel.php file to your [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) installation at the following location: /library/Server/Manager
 
 ## Features
 #### Server
@@ -27,10 +27,10 @@
 
 ## Important Notes
 
-- This community-maintained package isn't affiliated with FOSSBilling. Please report issues here rather than on the FOSSBilling repo.
+- This community-maintained package isn't affiliated with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling). Please report issues here rather than on the [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) repo.
 - Reseller support in the API is limited.  It does support creating Reseller accounts, though the API doesn't seem to provide a way to get all the domains/users hosted by the Reseller to suspend/un-suspend them. I'm not really sure if this happens if the reseller's website get suspended. 
 - For questions, concerns, or issues with this server manager, please open an issue on GitHub.
-- If FOSSBilling updates and breaks this server manager, report the issue here, and I'll update it to work with the latest version.
+- If [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) updates and breaks this server manager, report the issue here, and I'll update it to work with the latest version.
 - Created using these API docs: [CyberPanel API Docs](https://cyberpanel.docs.apiary.io)
 
 
