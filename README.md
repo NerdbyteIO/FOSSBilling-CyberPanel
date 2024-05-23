@@ -8,6 +8,11 @@
 
 - Download or git clone the CyberPanel.php file to your [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) installation at the following location: /library/Server/Manager
 
+## Custom Package Values
+
+ACL - By default this is set to user, but you may override it in your package by setting a ACL custom value in the package.
+
+
 ## Features
 #### Server
 - Verify Connection
