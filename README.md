@@ -10,7 +10,7 @@
 
 ## Custom Package Values
 
-ACL - By default this is set to user, but you may override it in your package by setting a ACL custom value in the package.
+ACL - By default this is set to user/reseller depending if the package choosen is a normal hosting or reseller hosting, but you may override it in your package by setting a ACL custom value in the package.
 
 
 ## Features
