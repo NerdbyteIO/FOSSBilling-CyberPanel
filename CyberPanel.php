@@ -95,10 +95,13 @@ class Server_Manager_CyberPanel extends Server_Manager
         $client = $account->getClient();
         $package = $account->getPackage();
 
+        $this->createUserAccount($account);
+
+
         if ($account->getReseller()) {
             $acl = 'reseller';
         } else {
-            $acl = 'user';
+            $acl = $package->getCustomValue('ACL') ?? 'user';
         }
 
         $request = $this->request('createWebsite', [
@@ -281,6 +284,50 @@ class Server_Manager_CyberPanel extends Server_Manager
     /**
      * Private Functions
      */
+
+    private function createUserAccount(Server_Account $account): bool
+    {
+        if ($account->getReseller()) {
+            $acl = 'reseller';
+        } else {
+            $acl = $account->getPackage()->getCustomValue('ACL') ?? 'user';
+        }
+
+        list($firstName, $lastName) = $this->GetName($account);
+
+        $request = $this->request('submitUserCreation', [
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'email' => $account->getClient()->getEmail(),
+            'userName' => $account->getUsername(),
+            'password' => $account->getPassword(),
+            'websitesLimit' => $account->getPackage()->getMaxDomains(),
+            'selectedACL' => $acl,
+            'securityLevel' => 'HIGH'
+        ]);
+
+        $response = json_decode($request->getContent());
+
+        if(! $response->status) {
+            throw new Server_Exception($response->error_message);
+        }
+
+        return true;
+
+    }
+
+    private function getName(Server_Account $account): array
+    {
+        $fullName = $account->getClient()->getFullname();
+
+        $parts = explode(' ', $fullName, 2);
+
+        if (count($parts) == 1) {
+            return array($parts[0], '');
+        }
+
+        return $parts;
+    }
 
     private function request(string $action, array $params)
     {
