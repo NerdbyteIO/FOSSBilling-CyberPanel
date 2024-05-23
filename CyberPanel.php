@@ -99,7 +99,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
 
         if ($account->getReseller()) {
-            $acl = 'reseller';
+            $acl = $account->getPackage()->getCustomValue('ACL') ?? 'reseller';
         } else {
             $acl = $package->getCustomValue('ACL') ?? 'user';
         }
@@ -303,7 +303,7 @@ class Server_Manager_CyberPanel extends Server_Manager
     private function createUserAccount(Server_Account $account): bool
     {
         if ($account->getReseller()) {
-            $acl = 'reseller';
+            $acl = $account->getPackage()->getCustomValue('ACL') ?? 'reseller';
         } else {
             $acl = $account->getPackage()->getCustomValue('ACL') ?? 'user';
         }
