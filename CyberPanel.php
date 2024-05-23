@@ -179,6 +179,7 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function cancelAccount(Server_Account $account): bool
     {
+        // Delete the website.
         $request = $this->request('deleteWebsite', [
             'domainName' => $account->getDomain()
         ]);
@@ -186,6 +187,20 @@ class Server_Manager_CyberPanel extends Server_Manager
         $response = json_decode($request->getContent());
 
         if(! $response->websiteDeleteStatus) {
+            throw new Server_Exception($response->error_message);
+        }
+
+        // Sleep for 2 seconds to ensure that delete website command finishes.
+        sleep(2);
+
+        // Delete the client
+        $request = $this->request('submitUserDeletion', [
+            'accountUsername' => $account->getUsername()
+        ]);
+
+        $response = json_decode($request->getContent());
+
+        if(! $response->status) {
             throw new Server_Exception($response->error_message);
         }
 
