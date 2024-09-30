@@ -34,7 +34,7 @@ class Server_Manager_CyberPanel extends Server_Manager
     {
         $useSsl        = $this->_config['secure'];
         $host          = $this->_config['host'];
-        $port          = !empty($this->_config['port']) ? ':'.$this->_config['port'].'/' : ':/8090';
+        $port          = !empty($this->_config['port']) ? ':'.$this->_config['port'].'/' : ':8090';
         $host          = ($useSsl) ? 'https://'.$host : 'http://'.$host;
 
         return $host.$port;
@@ -350,7 +350,7 @@ class Server_Manager_CyberPanel extends Server_Manager
         $host          = $this->_config['host'];
         $username      = $this->_config['username'];
         $password      = $this->_config['password'];
-        $port          = !empty($this->_config['port']) ? ':'.$this->_config['port'].'/' : ':/8090';
+        $port          = !empty($this->_config['port']) ? ':'.$this->_config['port'].'/' : ':8090/';
         $host          = ($useSsl) ? 'https://'.$host : 'http://'.$host;
         $restUrl       = $host.$port.'api/';
 
