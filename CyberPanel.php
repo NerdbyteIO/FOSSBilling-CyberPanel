@@ -32,10 +32,9 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function getLoginUrl(Server_Account $account = null): string
     {
-        $useSsl        = $this->_config['secure'];
         $host          = $this->_config['host'];
         $port          = !empty($this->_config['port']) ? ':'.$this->_config['port'].'/' : ':8090';
-        $host          = ($useSsl) ? 'https://'.$host : 'http://'.$host;
+        $host          = 'https://'.$host;
 
         return $host.$port;
     }
@@ -63,7 +62,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->verifyConn) {
+        if (! $response->verifyConn) {
             throw new Server_Exception('Invalid username or password.');
         }
 
@@ -117,7 +116,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->status) {
+        if (! $response->status) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -140,7 +139,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->websiteStatus) {
+        if (! $response->websiteStatus) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -163,7 +162,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->websiteStatus) {
+        if (! $response->websiteStatus) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -186,7 +185,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->websiteDeleteStatus) {
+        if (! $response->websiteDeleteStatus) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -200,7 +199,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->status) {
+        if (! $response->status) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -224,7 +223,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->changePackage) {
+        if (! $response->changePackage) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -275,7 +274,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->changeStatus) {
+        if (! $response->changeStatus) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -323,7 +322,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if(! $response->status) {
+        if (! $response->status) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -346,12 +345,11 @@ class Server_Manager_CyberPanel extends Server_Manager
 
     private function request(string $action, array $params)
     {
-        $useSsl        = $this->_config['secure'];
         $host          = $this->_config['host'];
         $username      = $this->_config['username'];
         $password      = $this->_config['password'];
         $port          = !empty($this->_config['port']) ? ':'.$this->_config['port'].'/' : ':8090/';
-        $host          = ($useSsl) ? 'https://'.$host : 'http://'.$host;
+        $host          = 'https://'.$host;
         $restUrl       = $host.$port.'api/';
 
         $client = $this->getHttpClient()->withOptions([
