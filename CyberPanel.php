@@ -378,8 +378,25 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function changeAccountPassword(Server_Account $account, string $newPassword): bool
     {
-        throw new Server_Exception(':type: does not support :action:',
-            [':type:' => 'Cyberpanel', ':action:' => ' Password changes at this time.']);
+        $client = $account->getClient();
+
+        list($firstName, $lastName) = $this->GetName($account);
+
+        $request = $this->request('saveModificationsUser', [
+            'accountUsername' => $account->getUsername(),
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'email' => $client->getEmail(),
+            'passwordByPass' => $newPassword,
+        ]);
+
+        $response = json_decode($request->getContent());
+
+        if (!$response->status) {
+            throw new Server_Exception($response->error_message);
+        }
+
+        return true;
     }
 
     /**

@@ -3,7 +3,7 @@
 > **Note:** Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20 and v0.6.22.
 
 ## Looking for V1?
-It's currently recommended to continue using V1 of this server manager, which can be found in [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
+V2 is currently in beta and needs further testing, if you would like to use v1.x branch you can do so at the following link: [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
 
 ## Installation
 
@@ -43,7 +43,7 @@ It's currently recommended to continue using V1 of this server manager, which ca
 - Suspend/Unsuspend Website
 
 ### User Functions
-- Change User Password (currently disabled; under review due to API limitations)
+- Change User Password
 
 ### Limitations
 - Cannot change account username or domain.
