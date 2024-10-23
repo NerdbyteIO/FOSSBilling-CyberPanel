@@ -1,6 +1,13 @@
 # FOSSBilling-CyberPanel Server Manager V2 - BETA
 
-> **Note:** Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20 and v0.6.22.
+> [!NOTE]  
+> Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20,v0.6.22
+>
+
+
+> [!IMPORTANT]  
+> The primary difference between V1.x and V2 is that V2 utilizes the /cloudAPI endpoint, which requires the server API username and token, rather than the /api endpoint with the API username and password.
+> 
 
 ## Looking for V1?
 V2 is currently in beta and needs further testing, if you would like to use v1.x branch you can do so at the following link: [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
