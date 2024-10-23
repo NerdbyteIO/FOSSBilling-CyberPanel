@@ -69,3 +69,7 @@ V2 is currently in beta and needs further testing, if you would like to use v1.x
 If you find this server manager useful and wish to support further development, consider buying me a coffee! Your support is appreciated, but entirely optional.
 
 <a href="https://www.buymeacoffee.com/jsonkenyon" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=NerdbyteIO/FossBilling-CyberPanel&type=Date)](https://star-history.com/#NerdbyteIO/FossBilling-CyberPanel&Date)
