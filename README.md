@@ -2,6 +2,9 @@
 
 > **Note:** Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20 and v0.6.22.
 
+## Looking for V1?
+It's currently recommended to continue using V1 of this server manager, which can be found in [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
+
 ## Installation
 
 1. Download or clone the `CyberPanel.php` file into your [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) installation at `/library/Server/Manager`.
