@@ -1,47 +1,61 @@
-# FOSSBilling-Cyberpanel Server Manager
+# FOSSBilling-CyberPanel Server Manager V2 - BETA
 
-> [!NOTE]  
-> Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20,v0.6.22
-> 
+> **Note:** Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20 and v0.6.22.
 
 ## Installation
 
-- Download or git clone the CyberPanel.php file to your [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) installation at the following location: /library/Server/Manager
+1. Download or clone the `CyberPanel.php` file into your [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) installation at `/library/Server/Manager`.
+2. This version requires a CloudAPI token. Obtain it by executing the following command as the root user:
+
+   ```bash
+   mysql -e "SELECT token FROM $CYBERPANEL-DBNAME.loginSystem_administrator WHERE username='$USERNAME' \G"
+   ```
+
+   You will see output like:
+
+   ```
+   +------------------------------------------------------------------------+
+    | token                                                                  |
+    +------------------------------------------------------------------------+
+    | Basic 1334b8120fee23669888fe4409d23a0a0fe63845a1e70811be2f91af1be000a5 |
+    +------------------------------------------------------------------------+
+   ```
+
+   **Ensure to replace `$CYBERPANEL-DBNAME` and `$USERNAME` with your actual database name and CyberPanel username.**
+
+   Alternatively, you can retrieve the token via phpMyAdmin from the `loginSystem_administrator` table. **Do not include "BASIC".** in the API Token field of FOSSBilling
 
 ## Custom Package Values
 
-ACL - By default this is set to user/reseller depending if the package choosen is a normal hosting or reseller hosting, but you may override it in your package by setting a ACL custom value in the package.
-
+- **ACL:** Default is set to user/reseller based on the selected package; it can be overridden by specifying a custom ACL value in the package.
 
 ## Features
-#### Server
+
+### Server
 - Verify Connection
 
-#### Website Functions
-- Create Website (This will also create the user in CyberPanel)
+### Website Functions
+- Create Website (includes user creation in CyberPanel)
 - Change Website Package
-- Suspend/Un-suspend Website
+- Suspend/Unsuspend Website
 
-#### User Functions
-- Change User Password
+### User Functions
+- Change User Password (currently disabled; under review due to API limitations)
 
-#### Things The Don't Work Due To Lack Of API
-- Changing Account Username
-- Changing Account Domain
-- Synchronizing Accounts
+### Limitations
+- Cannot change account username or domain.
+- Synchronization of accounts is not supported due to API constraints.
 
 ## Important Notes
 
-- This community-maintained package isn't affiliated with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling). Please report issues here rather than on the [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) repo.
-- Reseller support in the API is limited.  It does support creating Reseller accounts, though the API doesn't seem to provide a way to get all the domains/users hosted by the Reseller to suspend/un-suspend them. I'm not really sure if this happens if the reseller's website get suspended. 
-- For questions, concerns, or issues with this server manager, please open an issue on GitHub.
-- If [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) updates and breaks this server manager, report the issue here, and I'll update it to work with the latest version.
-- Created using these API docs: [CyberPanel API Docs](https://cyberpanel.docs.apiary.io)
-
+- This community-maintained package is not affiliated with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling). Please report issues here, not on the FOSSBilling repo.
+- API reseller support is limited. While creating reseller accounts is supported, the API does not allow retrieval of all domains/users for suspension actions.
+- For any questions or issues, please open an issue on GitHub.
+- If updates to [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) disrupt this server manager's functionality, report the issue here for updates.
+- Developed using the [CyberPanel API Docs](https://cyberpanel.docs.apiary.io).
 
 ## Donate
-If you're finding value in this server manager and feel like buying me a coffee, that's awesome! Your support is appreciated and helps fuel further development. However, there's absolutely no pressure. I'm genuinely rewarded knowing people find my work useful, though I do have a soft spot for coffee! ☕️
 
- <a href="https://www.buymeacoffee.com/jsonkenyon" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+If you find this server manager useful and wish to support further development, consider buying me a coffee! Your support is appreciated, but entirely optional.
 
-
+<a href="https://www.buymeacoffee.com/jsonkenyon" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
