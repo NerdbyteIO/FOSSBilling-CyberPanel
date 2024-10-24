@@ -311,7 +311,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $request = $this->request('submitUserCreation', [
             'firstName' => $firstName,
-            'lastName' => $lastName,
+            'lastName' => $lastName ?: 'Unknown',
             'email' => $account->getClient()->getEmail(),
             'userName' => $account->getUsername(),
             'password' => $account->getPassword(),
