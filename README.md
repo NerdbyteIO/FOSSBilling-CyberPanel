@@ -11,7 +11,7 @@
 
 
 > [!WARNING]
-> It is important to note that due to the limitations of this API only the "**admin**" user can use this API.  If you have created another admin user that you would like to use instead of the default admin; please use [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
+> **ONLY THE ADMIN (admin)** user may be used for this version, as this API endpoint requires that administrator account.  Currently we still accept a username, as if CyberPanel allows other "administrator" accounts to access the API we should be able to support it right away. If you need to use another user or you are a reseller please refer to the [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x) [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
 > 
 
 ## Looking for V1?
