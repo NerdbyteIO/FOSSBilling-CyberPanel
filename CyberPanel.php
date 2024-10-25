@@ -151,13 +151,28 @@ class Server_Manager_CyberPanel extends Server_Manager
     {
         $client = $account->getClient();
         $hostingPackage = $account->getPackage();
+        /**
+         *
+         * Does the current package that is being sent to CyberPanel exist?
+         * if not lets create it before making the website.
+         * See GitHub issues #10, and #11
+         */
+        $packageName = $this->doesPackageExist($hostingPackage);
 
+        /**
+         *
+         * Create the user.
+         */
         $this->createUserAccount($account);
 
+        /**
+         *
+         * Creating the website and assign it to the newly created user.
+         */
         $request = $this->request('submitWebsiteCreation', [
             'domainName' => $account->getDomain(),
             'adminEmail' => $client->getEmail(),
-            'package' => $hostingPackage->getName(),
+            'package' => $packageName,
             'websiteOwner' => $account->getUsername(),
             'ownerPassword' => $account->getPassword(),
             'phpSelection' => 'PHP 8.3',
@@ -179,6 +194,73 @@ class Server_Manager_CyberPanel extends Server_Manager
         return true;
     }
 
+
+    /**
+     * @param  Server_Package  $hostingPackage
+     * @return string
+     */
+    private function doesPackageExist(Server_Package $hostingPackage): string
+    {
+        /**
+         *
+         * We need to remove the space in the package name if there
+         * is one. This is because CyberPanel will do it; so we
+         * need to match it.
+         */
+        $packageName = str_replace(' ', '', $hostingPackage->getName());
+
+        $request = $this->request('fetchPackages', []);
+        $response = json_decode($request->getContent());
+        $packagesArray = json_decode($response->data, true);
+
+        /**
+         *
+         * Check if the package already exists. If the package
+         * exists we return the name of the package. If it doesn't
+         * exist then we create a new package.
+         */
+        for ($i = 0; $i < count($packagesArray); $i++) {
+            if ($packagesArray[$i]['packageName'] == $this->_config['username']."_".$packageName) {
+                return $packagesArray[$i]['packageName'];
+            }
+        }
+
+        $request = $this->request('submitPackage', [
+            'packageName' => $packageName,
+            'diskSpace' => $hostingPackage->getQuota(),
+            'bandwidth' => $hostingPackage->getBandwidth(),
+            'dataBases' => $hostingPackage->getMaxSql(),
+            'ftpAccounts' => $hostingPackage->getMaxFtp(),
+            'emails' => $hostingPackage->getMaxPop(),
+            'allowedDomains' => $hostingPackage->getMaxDomains(),
+        ]);
+
+        $response = json_decode($request->getContent());
+
+        if (!$response->status) {
+            throw new Server_Exception($response->error_message);
+        }
+
+        return $this->_config['username']."_".$packageName;
+    }
+
+    /**
+     * @param  Server_Account  $account
+     * @return array
+     */
+    private function getName(Server_Account $account): array
+    {
+        $fullName = $account->getClient()->getFullName();
+
+        $parts = explode(' ', $fullName, 2);
+
+        return $parts;
+    }
+
+    /**
+     * @param  Server_Account  $account
+     * @return bool
+     */
     private function createUserAccount(Server_Account $account): bool
     {
         /**
@@ -192,7 +274,7 @@ class Server_Manager_CyberPanel extends Server_Manager
             $acl = $account->getPackage()->getCustomValue('ACL') ?? 'user';
         }
 
-        list($firstName, $lastName) = $this->GetName($account);
+        list($firstName, $lastName) = $this->getName($account);
 
         $request = $this->request('submitUserCreation', [
             'firstName' => $firstName,
@@ -212,19 +294,6 @@ class Server_Manager_CyberPanel extends Server_Manager
         }
 
         return true;
-    }
-
-    /**
-     * @param  Server_Account  $account
-     * @return array
-     */
-    private function getName(Server_Account $account): array
-    {
-        $fullName = $account->getClient()->getFullName();
-
-        $parts = explode(' ', $fullName, 2);
-
-        return $parts;
     }
 
     /**
