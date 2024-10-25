@@ -73,7 +73,7 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function getLoginUrl(Server_Account $account = null): string
     {
-        return 'https://'.$this->_config['host'].':'.$this->port;
+        return 'https://'.$this->_config['host'].':'.$this->_config['port'];
     }
 
     /**
