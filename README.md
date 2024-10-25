@@ -6,7 +6,7 @@
 
 
 > [!IMPORTANT]  
-> The primary difference between V1.x and V2 is that V2 utilizes the /cloudAPI endpoint, which requires the server API username and token, rather than the /api endpoint with the API username and password.
+> The primary difference between V1.x and V2 is that V2 utilizes the /cloudAPI endpoint, which requires the server API username and token, rather than the /api endpoint with the API username and password.  It is also important to note that due to the limitations of this API only the "admin" user can use this API.  If you have created another admin user that you would like to use instead of the default admin; please use [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)
 > 
 
 ## Looking for V1?
@@ -18,7 +18,7 @@ V2 is currently in beta and needs further testing, if you would like to use v1.x
 2. This version requires a CloudAPI token. Obtain it by executing the following command as the root user:
 
    ```bash
-   mysql -e "SELECT token FROM $CYBERPANEL-DBNAME.loginSystem_administrator WHERE username='$USERNAME' \G"
+   mysql -e "SELECT token FROM $CYBERPANEL-DBNAME.loginSystem_administrator WHERE username='admin' \G"
    ```
 
    You will see output like:
