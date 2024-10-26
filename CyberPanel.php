@@ -395,8 +395,17 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function changeAccountPackage(Server_Account $account, Server_Package $package): bool
     {
+        /**
+         *
+         * Check and see what the hosting package is. If it doesn't contain the
+         * API user username and is not Default we append it, if it does we just return
+         * the name.
+         */
         if($package->getName() != 'Default') {
             $packageName = $this->_config('username')."_".$package->getName();
+        }
+        if(strtok($package->getName(), '_') == $this->_config('username')) {
+            $packageName = $package->getName();
         }
         else {
             $packageName = $package->getName();
