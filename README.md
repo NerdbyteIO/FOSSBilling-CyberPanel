@@ -1,11 +1,11 @@
-# FOSSBilling-CyberPanel Server Manager Version 2 (2.x) - BETA
+# FOSSBilling-CyberPanel Server Manager Version Two (2.x) - BETA
 
 > [!NOTE]  
 > Tested with [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) v0.6.20, v0.6.22
 >
 
 ## Looking for V1?
-Version Two (2.x) is currently in beta. If you prefer not to use the beta version, you may opt for the Version One (1.x) branch, available here: [v1.x branch]([https://github.com/FOSSBilling/FOSSBilling](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x)). We recommend reviewing the [features page](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/wiki/Features) in the wiki to understand the differences between the versions.
+Version Two (2.x) is currently in beta. If you prefer not to use the beta version, you may opt for the Version One (1.x) branch, available here: [v1.x branch](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/tree/v1.x). We recommend reviewing the [features page](https://github.com/NerdbyteIO/FOSSBilling-CyberPanel/wiki/Features) in the wiki to understand the differences between the versions.
 
 
 ## Installation
