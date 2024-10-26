@@ -395,9 +395,16 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function changeAccountPackage(Server_Account $account, Server_Package $package): bool
     {
+        if($package->getName() != 'Default') {
+            $packageName = $this->_config('username')."_".$package->getName();
+        }
+        else {
+            $packageName = $package->getName();
+        }
+
         $request = $this->request('changePackageAPI', [
             'websiteName' => $account->getDomain(),
-            'packageName' => $package->getName(),
+            'packageName' => $packageName,
         ]);
 
         $response = json_decode($request->getContent());
