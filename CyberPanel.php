@@ -312,7 +312,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if (!$response->status) {
+        if (!$response->websiteStatus) {
             throw new Server_Exception($response->error_message);
         }
 
@@ -335,7 +335,7 @@ class Server_Manager_CyberPanel extends Server_Manager
 
         $response = json_decode($request->getContent());
 
-        if (!$response->status) {
+        if (!$response->websiteStatus) {
             throw new Server_Exception($response->error_message);
         }
 
