@@ -395,34 +395,28 @@ class Server_Manager_CyberPanel extends Server_Manager
      */
     public function changeAccountPackage(Server_Account $account, Server_Package $package): bool
     {
-        /**
-         *
-         * Check and see what the hosting package is. If it doesn't contain the
-         * API user username and is not Default we append it, if it does we just return
-         * the name.
-         */
-        if($package->getName() != 'Default') {
-            $packageName = $this->_config('username')."_".$package->getName();
-        }
-        if(strtok($package->getName(), '_') == $this->_config('username')) {
-            $packageName = $package->getName();
-        }
-        else {
-            $packageName = $package->getName();
-        }
+        throw new Server_Exception(':type: does not support :action:',
+            [':type:' => 'Cyberpanel', ':action:' => __trans('package changes')]);
 
-        $request = $this->request('changePackageAPI', [
-            'websiteName' => $account->getDomain(),
-            'packageName' => $packageName,
-        ]);
+                /*
+                 * We have to disable this function for now, this endpoint
+                 * doesn't seem to exist in the cloudAPI. A ticket would need
+                 * to be made to reach out to them, about it.
+                $packageName = $this->doesPackageExist($package);
 
-        $response = json_decode($request->getContent());
+                $request = $this->request('changePackageAPI', [
+                    'websiteName' => $account->getDomain(),
+                    'packageName' => $packageName,
+                ]);
 
-        if (!$response->status) {
-            throw new Server_Exception($response->error_message);
-        }
+                $response = json_decode($request->getContent());
 
-        return true;
+                if (!$response->status) {
+                    throw new Server_Exception($response->error_message);
+                }
+
+                return true;
+                */
     }
 
     /**
